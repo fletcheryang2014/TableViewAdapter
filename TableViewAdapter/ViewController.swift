@@ -80,18 +80,18 @@ class ViewController: UIViewController, MyTableViewCell2Delegate {
         initTableView()
     }
     
-    var dataSource: KKTableViewAdapter?
+    var adapter: KKTableViewAdapter?
     
     func initTableView() {
         //最简单的情况
-//        dataSource = KKTableViewAdapter()
-//        dataSource?.datas = [["jack", "tom"]]
-//        dataSource?.cellClass = MyTableViewCell1.self
+        adapter = KKTableViewAdapter()
+        adapter?.datas = [["jack", "tom"]]
+        adapter?.cellClass = MyTableViewCell1.self
         
         //有多个section或多个cell类型的情况
-        dataSource = KKTableViewAdapter(self)
-        dataSource?.datas = [["jack", "tom"],["frank","bill"]] // 数据可以稍后再设
-        dataSource?.cellClassForRow = { indexPath in
+        adapter = KKTableViewAdapter(self)
+        adapter?.datas = [["jack", "tom"],["frank","bill"]] // 数据可以稍后再设
+        adapter?.cellClassForRow = { indexPath in
             if indexPath.section == 0 {
                 return MyTableViewCell1.self
             } else {
@@ -99,13 +99,13 @@ class ViewController: UIViewController, MyTableViewCell2Delegate {
             }
         }
         
-        dataSource?.didSelectRow = { tableView, indexPath in
+        adapter?.didSelectRow = { tableView, indexPath in
             print("\(indexPath)")
         }
         
         let tableView = UITableView(frame: self.view.frame, style: .plain)
-        tableView.dataSource = dataSource
-        tableView.delegate = dataSource
+        tableView.dataSource = adapter
+        tableView.delegate = adapter
         self.view.addSubview(tableView)
     }
     
