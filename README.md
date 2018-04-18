@@ -15,9 +15,10 @@ A simple wrapper for the datasource and delegate of the UITableView. It will hel
         tableView.dataSource = dataSource
         tableView.delegate = dataSource
         self.view.addSubview(tableView)
-        
-        //有多个section或多个cell类型的情况
-        dataSource = KKTableViewAdapter(self)
+  ``` 
+  ```
+        //custom case
+        dataSource = KKTableViewAdapter(self)
         dataSource?.datas = [["jack", "tom"],["frank","bill"]] // 数据可以稍后再设
         dataSource?.cellClassForRow = { indexPath in
             if indexPath.section == 0 {
@@ -25,6 +26,5 @@ A simple wrapper for the datasource and delegate of the UITableView. It will hel
             } else {
                 return MyTableViewCell2.self
             }
-        }
-  ```      
-        
+        }      
+```
